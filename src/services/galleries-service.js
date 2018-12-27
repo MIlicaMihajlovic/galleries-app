@@ -1,10 +1,15 @@
 import http from './http-service.js'
 
 class GalleriesService {
-    getGalleries(term = '', skip = 0, take = 10) {
-        return http.get('/galleries', { params: { term, skip, take }})
+    getGalleries(page = 1) {
+            return http.get('/galleries',  { params: { page }})
              .then(({ data }) => data)
-    }         
+    }
+    
+    getGallery(id) {
+        return http.get(`galleries/${id}`) //mora sve pod ``
+            .then(({ data }) => data)
+    }
 }
 
 const galleriesService = new GalleriesService()

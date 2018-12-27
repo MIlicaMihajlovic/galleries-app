@@ -5,6 +5,7 @@ import Login from './components/Auth/Login.vue'
 import Register from './components/Auth/Register.vue'
 
 import AllGalleries from './components/AllGalleries.vue'
+import SingleGallery from './components/SingleGallery.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,10 @@ const routes = [
     meta: {
         guest: true
     }
+    },
+    {path: 'galleries/:id',
+    component: SingleGallery,
+    name: 'single-gallery'
     }
 ]
 
