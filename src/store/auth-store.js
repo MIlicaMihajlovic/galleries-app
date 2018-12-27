@@ -2,8 +2,8 @@ import authService from '../services/auth-service.js'
 import router from '../router.js'
 
 const getUserFromLocalStorage = () => {
-    const json = localStorage.getItem('user')
-    return JSON.parse(json.user || '{}')
+    const user = localStorage.getItem('user')
+    return JSON.parse(user)
 }
 
 // const getUserFromLocalStorage = () => {
