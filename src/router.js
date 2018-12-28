@@ -7,6 +7,7 @@ import Register from './components/Auth/Register.vue'
 import AllGalleries from './components/AllGalleries.vue'
 import SingleGallery from './components/SingleGallery.vue'
 import CreateGallery from './components/CreateGallery.vue'
+import MyGalleries from './components/MyGalleries.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,14 @@ const routes = [
     meta: {
         auth: true
     }
+    },
+    {path: '/my-gallery',
+    component: MyGalleries,
+    name: 'my-galleries',
+    meta: {
+        auth: true
+    }
+
     }
 ]
 

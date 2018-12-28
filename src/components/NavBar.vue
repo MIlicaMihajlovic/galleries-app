@@ -7,6 +7,9 @@
             <router-link v-if="user" class="navbar-brand" :to="{name: 'add'}">  
                Create Gallery 
             </router-link>
+            <router-link v-if="user" class="navbar-brand" :to="{name: 'my-galleries'}">  
+               My Galleries 
+            </router-link>
             <router-link v-if="!user" class="navbar-brand" :to="{name: 'login'}">  
                 Login
             </router-link>
@@ -27,9 +30,9 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
     computed: {
-    ...mapGetters({
-      user: 'getUser'
-    })
+        ...mapGetters({
+        user: 'getUser'
+        })
     },
 
     methods: {

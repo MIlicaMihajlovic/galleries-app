@@ -7,7 +7,12 @@ class GalleriesService {
     }
     
     getGallery(id) {
-        return http.get(`galleries/${id}`) //mora sve pod ``
+        return http.get(`galleries/${id}`) //mora sve pod `` 
+            .then(({ data }) => data)
+    }
+
+    getMyGalleries(id, page = 1) {
+        return http.get('galleries', { params: { id, page } }) 
             .then(({ data }) => data)
     }
 

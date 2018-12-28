@@ -15,18 +15,22 @@
              v-model="gallery.description">
              </textarea>  
         </div>
-        <div class="form-group" v-for="(n, index) in counter" :key="index">
+        <div class="form-group" v-for="(n,index) in counter" :key="index">
             <label>Image</label>
             <input type="url"
             class="form-control" 
             placeholder="Image URL"
             v-model="gallery.images[index].imageUrl">
-            
-                <button @click="addInput"
+            <button @click="addInput"
+            type="button" 
+            class="btn btn-primary">
+                Add another image
+            </button>
+            <button @click="deleteInput(index)"
                 type="button" 
                 class="btn btn-primary">
-                 Add another image
-                </button>
+                 Delete image
+            </button>    
            
         </div>
         <button type="submit" 
@@ -44,6 +48,8 @@ export default {
     data() {
         return {
             gallery: {
+                title: '',
+                description: '',
                 images: [{ imageUrl: '' }]
             },
             counter: 1
@@ -55,21 +61,28 @@ export default {
     methods: {
         onSubmitCreateGallery() {
             console.log(this.gallery)
-        galleriesService.create(this.gallery)
-        
+            galleriesService.create(this.gallery)
             .then(response => {
-                console.log(response)
-                // this.$router.push({name: 'all-galleries'})
+                // console.log(response)
+                this.$router.push({name: 'all-galleries'})
                 this.gallery = {}
             }).catch(error => {
             this.errors = error.response.data.errors
             })
         },
         
-         addInput() {
+        addInput() {
             this.counter++
             this.gallery.images.push({imageUrl: ''})
             
+        },
+        
+        deleteInput(index) {
+            console.log(this.index)
+            if(this.counter > 1) {
+                this.counter--
+                this.gallery.images.splice(index,1)
+            }         
         }
     },
 

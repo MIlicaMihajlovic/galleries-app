@@ -32,7 +32,7 @@ export default {
     beforeRouteEnter(to,from,next) {
         galleriesService.getGallery(to.params.id)
         .then(response => {
-            console.log(response)
+           // console.log(response)
             next(vm => {
                 vm.gallery = response
             })
