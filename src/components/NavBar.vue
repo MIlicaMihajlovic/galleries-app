@@ -4,6 +4,9 @@
             <router-link class="navbar-brand" :to="{name: 'all-galleries'}">  
                All Galleries 
             </router-link>
+            <router-link v-if="user" class="navbar-brand" :to="{name: 'add'}">  
+               Create Gallery 
+            </router-link>
             <router-link v-if="!user" class="navbar-brand" :to="{name: 'login'}">  
                 Login
             </router-link>

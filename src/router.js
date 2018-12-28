@@ -6,6 +6,7 @@ import Register from './components/Auth/Register.vue'
 
 import AllGalleries from './components/AllGalleries.vue'
 import SingleGallery from './components/SingleGallery.vue'
+import CreateGallery from './components/CreateGallery.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,13 @@ const routes = [
     {path: 'galleries/:id',
     component: SingleGallery,
     name: 'single-gallery'
+    },
+    {path: '/add',
+    component: CreateGallery,
+    name: 'add',
+    meta: {
+        auth: true
+    }
     }
 ]
 

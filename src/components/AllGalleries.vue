@@ -1,19 +1,32 @@
 <template>
     <div>   
         <div v-if="galleries.length">
-            <ul>         
+            <ul>
+                
             <li v-for="gallery in galleries" :key="gallery.id" >
-                <router-link class="navbar-brand" :to="{name: 'single-gallery', params: {id:gallery.id}}">  
+                <div>
+                    <router-link class="navbar-brand" :to="{name: 'single-gallery', params: {id:gallery.id}}">  
                 {{ gallery.title }}
                 </router-link>
-                <img v-if="gallery.images[0]" :src="gallery.images[0].imageUrl" />
+                </div>
+                <div>
+                    <img v-if="gallery.images[0]" :src="gallery.images[0].imageUrl" />
                 {{ gallery.description }}
-                <!-- <router-link class="navbar-brand" :to="{name: 'author', params: {id:user.id}}">   -->
+                </div>
+                <div>
+                    <!-- <router-link class="navbar-brand" :to="{name: 'author', params: {id:user.id}}">   -->
                     {{ gallery.user.first_name }}
                     {{ gallery.user.last_name }}
                 <!-- </router-link>   -->
-                {{ gallery.created_at }}
-            </li>
+                </div>
+                <div>
+                     {{ gallery.created_at }}
+                </div>
+                
+               
+            </li> 
+                         
+            
         </ul> 
             <button type="button" class="btn btn-dark" @click="loadMore">Load more</button>
         </div> 
@@ -34,7 +47,8 @@ export default {
         return {
             galleries: [],
             page: 1,
-            next_page_url: ''
+            next_page_url: '',
+            term: ''
         }
     },
 
@@ -54,12 +68,13 @@ export default {
             this.galleries = this.galleries.concat(response.data)  //u nizu galleries dodaje sledecu stranicu stranicu
             this.next_page_url = response.next_page_url
        })    
+        },
+
+        search(term) {
+            
         }
 
     }
-
-    
-
 
     
 }

@@ -10,6 +10,14 @@ class GalleriesService {
         return http.get(`galleries/${id}`) //mora sve pod ``
             .then(({ data }) => data)
     }
+
+    create({ title, description, images }) {
+        return http.post('galleries', { 
+            title, 
+            description, 
+            images
+         })
+    }
 }
 
 const galleriesService = new GalleriesService()
