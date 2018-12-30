@@ -30,12 +30,6 @@ class AuthService {
         }
         http.defaults.headers.common['Authorization'] = `Bearer ${token}`   //setovali smo token
     }
-
-    
-        // axios({url: 'http://localhost:3000/register', data: user, method: 'POST' })
-        // .then(resp => {
-        //   const token = resp.data.token
-        //   const user = resp.data.user
 }
 
 const checkForInitialToken = (authService) => {
@@ -45,13 +39,6 @@ const checkForInitialToken = (authService) => {
     }
 }
 
-// const setLocalStorage = (authService) => {
-//     localStorage.setItem('user', JSON.stringify(user)) 
-//     localStorage.setItem('token', token)
-//     authService.setAuthHeaders(token)
-// }
-
 const authService = new AuthService()
 checkForInitialToken(authService)  //svaki put kad reloaduje provera da li ima token
-//setLocalStorage(authService)
 export default authService

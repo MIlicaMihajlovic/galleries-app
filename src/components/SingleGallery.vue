@@ -13,6 +13,14 @@
             </div>
             <li>{{ gallery.description }}</li>
             <li>{{ gallery.created_at }}</li>
+            <li v-for="comment in gallery.comments" :key="comment.id"
+            v-if="comments.length">
+               <p>Name:</p> 
+                {{comment.user.first_name}}
+                {{comment.user.last_name}}
+                 <p>Comment:</p> 
+                {{comment.body}}
+            </li>
                 
          </ul>        
     </div>
@@ -22,19 +30,25 @@
 
 import galleriesService from './../services/galleries-service.js'
 
+
 export default {
     data() {
         return {
-            gallery: {}
+            gallery: {},
+            comments: []
+            
         }
     },
+    
 
     beforeRouteEnter(to,from,next) {
+       
         galleriesService.getGallery(to.params.id)
         .then(response => {
-           // console.log(response)
+           // console.log(response.data)
             next(vm => {
                 vm.gallery = response
+                vm.comments=response.comments
             })
         })
     }

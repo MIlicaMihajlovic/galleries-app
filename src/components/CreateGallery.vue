@@ -5,22 +5,28 @@
             <input type="text" 
             class="form-control" 
             placeholder="Title"  
-            v-model="gallery.title">
+            v-model="gallery.title"
+            minlength="2"
+            maxlength="255"
+            required>
         </div>
         <div class="form-group">
             <label>Description</label>
             <textarea class="form-control" 
              rows="3"
              placeholder="Description"
-             v-model="gallery.description">
-             </textarea>  
+             v-model="gallery.description"
+             maxlength="1000">
+             </textarea> 
         </div>
         <div class="form-group" v-for="(n,index) in counter" :key="index">
             <label>Image</label>
             <input type="url"
             class="form-control" 
             placeholder="Image URL"
-            v-model="gallery.images[index].imageUrl">
+            v-model="gallery.images[index].imageUrl"
+            pattern="https?://.+(png|jpg|jpeg)"
+            required>
             <button @click="addInput"
             type="button" 
             class="btn btn-primary">
@@ -36,6 +42,10 @@
         <button type="submit" 
         class="btn btn-primary">
         Create new gallery
+        </button>
+        <button @click="cancel" type="button" 
+        class="btn btn-primary">
+        Cancel
         </button>
     </form>
 </template>
@@ -53,7 +63,7 @@ export default {
                 images: [{ imageUrl: '' }]
             },
             counter: 1
-
+            //broji slike
             
         }
     },
@@ -83,13 +93,12 @@ export default {
                 this.counter--
                 this.gallery.images.splice(index,1)
             }         
-        }
-    },
+        },
 
-    
-       
-    
-    
+        cancel() {
+           this.$router.push({name: 'all-galleries'}) 
+        }
+    }    
 }
 </script>
 

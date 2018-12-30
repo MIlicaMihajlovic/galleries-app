@@ -1,18 +1,18 @@
 import http from './http-service.js'
 
 class GalleriesService {
-    getGalleries(page = 1) {
-            return http.get('/galleries',  { params: { page }})
+    getGalleries(id, page = 1) {
+            return http.get('/galleries',  { params: { id, page }})
              .then(({ data }) => data)
     }
     
     getGallery(id) {
-        return http.get(`galleries/${id}`) //mora sve pod `` 
+        return http.get(`/galleries/${id}`) 
             .then(({ data }) => data)
     }
 
     getMyGalleries(id, page = 1) {
-        return http.get('galleries', { params: { id, page } }) 
+        return http.get('/galleries', { params: {  id, page } }) 
             .then(({ data }) => data)
     }
 
@@ -22,6 +22,11 @@ class GalleriesService {
             description, 
             images
          })
+    }
+
+    getAuthorsGallery(id, page = 1) {
+        return http.get(`/authors/${id}`, { params: { page }}) 
+            .then(({ data }) => data)
     }
 }
 
